@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # - name: Parse logs
-      #   uses: ./github/actions/my-custom-action
-      #   with:
-      #     log-path: ${{ inputs.log-path }}
+      - name: Parse logs
+        uses: ./github/actions/action.yml
+        with:
+          log-path: ${{ inputs.log-path }}
