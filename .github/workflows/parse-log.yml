@@ -19,6 +19,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Parse logs
-        uses: gvlaan/build-engineer-homework@a27ca83c29c646fb635990fb8e329adfd469fc26
+        uses: ./.github/actions
         with:
           log-path: ${{ inputs.log-path }}
