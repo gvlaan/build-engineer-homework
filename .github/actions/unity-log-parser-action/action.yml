@@ -1,7 +1,7 @@
 name: 'Unity Log Parser'
 description: 'Parse Unity Editor log files and generate workflow annotations'
 inputs:
-  log-file-path:
+  log-path:
     description: 'Path to the Unity Editor log file'
     required: true
 
