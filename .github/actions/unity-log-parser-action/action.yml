@@ -13,5 +13,5 @@ runs:
   using: "composite"
   steps:
     - name: Run Unity log parser
-      run: ./.github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
-      shell: python
+      run: python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
+      shell: bash
