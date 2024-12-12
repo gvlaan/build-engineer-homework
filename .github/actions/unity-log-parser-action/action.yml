@@ -14,6 +14,6 @@ runs:
   steps:
     - name: Run Unity log parser
       run: ./.github/actions/unity-log-parser-action/unity-log-parser.py
-      shell: bash
+      shell: python
       env:
         LOG_PATH: ${{ inputs.log-path }}
