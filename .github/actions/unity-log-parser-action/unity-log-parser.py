@@ -23,14 +23,14 @@ def parse_unity_log(log_path):
             if error_match:
                 error_count += 1
                 errors.append({
-                    'message': error_match.group(2).strip(),
+                    'message': line.strip(),
                     'line_number': line_number
                 })
 
             if warning_match:
                 warning_count += 1
                 warnings.append({
-                    'message': warning_match.group(2).strip(),
+                    'message': line.strip(),
                     'line_number': line_number
                 })
 
