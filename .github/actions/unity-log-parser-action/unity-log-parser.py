@@ -1,4 +1,3 @@
-import os
 import re
 import sys
 
@@ -41,7 +40,7 @@ def parse_unity_log(log_path):
         print(f"Error: Log file not found at {log_path}")
         sys.exit(1)
 
-log_file_path = os.environ.get("LOG_PATH")
+log_file_path = log_file_path = sys.argv[1]
 errors, warnings, error_count, warning_count = parse_unity_log(log_file_path)
 
 # GitHub Annotations

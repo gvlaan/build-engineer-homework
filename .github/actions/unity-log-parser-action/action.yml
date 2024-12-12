@@ -13,7 +13,5 @@ runs:
   using: "composite"
   steps:
     - name: Run Unity log parser
-      run: ./.github/actions/unity-log-parser-action/unity-log-parser.py
+      run: ./.github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
       shell: python
-      env:
-        LOG_PATH: ${{ inputs.log-path }}
