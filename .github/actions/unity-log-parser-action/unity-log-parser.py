@@ -41,7 +41,7 @@ def output_github_annotations(errors, warnings, log_file_path):
         print(f"::warning file={log_file_path}::{warning}")
 
 def set_github_output(data):
-    github_output = os.getenv('GITHUB_OUTPUT')
+    github_output = os.getenv('ERROR_OUTPUT')
 
     with open(github_output, "a") as f:
         json.dump(data, f)

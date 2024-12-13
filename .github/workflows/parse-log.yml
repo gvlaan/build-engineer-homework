@@ -27,4 +27,4 @@ jobs:
       - name: Output errors
         run: |
           echo "Errors:"
-          echo '${{ fromJson(steps.parse-unity-logs.outputs.errors) }}'
+          echo '${{ steps.parse-unity-logs.outputs.errors }}'
