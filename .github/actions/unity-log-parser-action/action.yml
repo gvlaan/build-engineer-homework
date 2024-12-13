@@ -8,7 +8,7 @@ inputs:
 outputs:
   errors:
     description: 'Errors found in the log file'
-    # value: ${{ steps.log-parser.outputs.errors }}
+    value: ${{ steps.log-parser.outputs.errors }}
 
 runs:
   using: "composite"
