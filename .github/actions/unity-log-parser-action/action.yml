@@ -19,8 +19,8 @@ runs:
         python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
         echo $GITHUB_OUTPUT
       shell: bash
-      # env: 
-      #   ERROR_OUTPUT: None
+      env:
+        GITHUB_OUTPUT: $GITHUB_OUTPUT
 
     # - name: Capture log errors
     #   id: log-errors
