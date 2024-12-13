@@ -42,12 +42,11 @@ def output_github_annotations(errors, warnings, log_file_path):
 
 def set_github_output(key, value):
     github_output = os.getenv('GITHUB_OUTPUT')
-
-    if isinstance(value, list):
-        value = "\n".join(value)
     
     with open(github_output, "a") as f:
-        f.write(f"{key}={value}\n")
+        if isinstance(value, list):
+            for item in value:
+                f.write(f"{key} {item}\n")
 
 if __name__ == "__main__":
     # Read log file path from input arguments
@@ -64,4 +63,4 @@ if __name__ == "__main__":
     output_github_annotations(errors, warnings, log_file_path)
 
     # Set GitHub Action Outputs
-    set_github_output("Error", errors)
+    set_github_output("[Error]", errors)
