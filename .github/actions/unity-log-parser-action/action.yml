@@ -14,12 +14,15 @@ runs:
   using: "composite"
   steps:
     - name: Run Unity log parser
-      run: python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
+      run: |
+        python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
       shell: bash
       env: 
         ERROR_OUTPUT: None
 
     - name: Capture log errors
       id: log-errors
-      run: echo "errors=$(echo fromjson($ERROR_OUTPUT))" >> $GITHUB_OUTPUT
+      run: |
+        output=fromjson($ERROR_OUTPUT)
+        echo "$output" >> $GITHUB_OUTPUT
       shell: bash
