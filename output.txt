@@ -1,7 +1,0 @@
-ERRORS_OUTPUT<<EOF
-Error=Line 11: Code 10 while verifying Licensing Client signature (process Id: 34356, path: "/Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client")
-Error=Line 12: LicensingClient has failed validation; ignoring
-Error=Line 2113: for: Csc Library/Bee/artifacts/200b0aP.dag/Assembly-CSharp.dll (+2 others)
-Error=Line 2124: building Player because scripts had compiler errors
-Error=Line 2152: (object)
-EOF

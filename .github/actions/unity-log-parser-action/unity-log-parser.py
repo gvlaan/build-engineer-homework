@@ -52,7 +52,7 @@ def set_github_output(key, value):
             for item in value:
                 f.write(f"{key}={item}\n")
                 # f.write(f"{key}={item}\n")
-        f.write(f"EOF\n")
+        f.write(f"EOF")
 
 if __name__ == "__main__":
     # Read log file path from input arguments
