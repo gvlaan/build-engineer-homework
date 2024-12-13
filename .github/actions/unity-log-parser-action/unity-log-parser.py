@@ -45,8 +45,7 @@ def set_github_output(key, value):
     with open(github_output, "a") as f:
         if isinstance(value, list):
             for item in value:
-                # f.write(f"{key}={item}\n")
-                f.write(f"{key}<<EOF\n{value}\nEOF\n")
+                f.write(f"{key}={item}\n")
 
 if __name__ == "__main__":
     # Read log file path from input arguments
