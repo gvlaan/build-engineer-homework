@@ -16,6 +16,7 @@ runs:
     - name: Run Unity log parser
       run: |
         python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
+        echo $ERROR_OUTPUT
       shell: bash
       env: 
         ERROR_OUTPUT: None
