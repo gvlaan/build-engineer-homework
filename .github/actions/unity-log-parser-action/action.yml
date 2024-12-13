@@ -8,23 +8,23 @@ inputs:
 outputs:
   errors:
     description: 'Errors found in the log file'
-    value: ${{ steps.log-errors.outputs.errors }}
+    value: ${{ steps.log-parser.outputs.errors }}
 
 runs:
   using: "composite"
   steps:
     - name: Run Unity log parser
+      id: log-parser
       run: |
         python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
-        echo $ERROR_OUTPUT
       shell: bash
-      env: 
-        ERROR_OUTPUT: None
+      # env: 
+      #   ERROR_OUTPUT: None
 
-    - name: Capture log errors
-      id: log-errors
-      run: |
-        echo $ERROR_OUTPUT
-        echo "errors=$(echo $ERROR_OUTPUT)" >> $GITHUB_OUTPUT
-        echo $GITHUB_OUTPUT
-      shell: bash
+    # - name: Capture log errors
+    #   id: log-errors
+    #   run: |
+    #     echo $ERROR_OUTPUT
+    #     echo "errors=$(echo $ERROR_OUTPUT)" >> $GITHUB_OUTPUT
+    #     echo $GITHUB_OUTPUT
+    #   shell: bash
