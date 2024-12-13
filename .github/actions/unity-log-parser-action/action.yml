@@ -23,5 +23,7 @@ runs:
     - name: Capture log errors
       id: log-errors
       run: |
+        echo $ERROR_OUTPUT
         echo "errors=$(echo $ERROR_OUTPUT)" >> $GITHUB_OUTPUT
+        echo $GITHUB_OUTPUT
       shell: bash
