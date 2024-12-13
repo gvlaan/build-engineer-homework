@@ -1,6 +1,5 @@
 import re
 import sys
-import os
 
 def parse_unity_log(log_path):
     errors = []
@@ -13,9 +12,9 @@ def parse_unity_log(log_path):
             log_content = log_file.readlines()
         
         # Matches lines containing "ERROR" or "Error" followed by the error message.
-        error_pattern = re.compile(r'(ERROR|Error):? (.+)')
+        error_pattern = re.compile(r'(ERROR|Error|error):? (.+)')
         # Matches lines containing "WARNING" or "Warning" followed by the warning message.
-        warning_pattern = re.compile(r'(WARNING|Warning):? (.+)')
+        warning_pattern = re.compile(r'(WARNING|Warning|warning):? (.+)')
 
         for line_number, line in enumerate(log_content, start=1):
             if error_match := error_pattern.search(line):
@@ -51,7 +50,7 @@ def set_github_output(key, value):
         if isinstance(value, list):
             for item in value:
                 f.write(f"{key}={item}\n")
-            f.write(f"EOF")
+            f.write(f"EOF\n")
         else:
             f.write(f"{key}={value}\n")
 
