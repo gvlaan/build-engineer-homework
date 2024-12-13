@@ -47,11 +47,13 @@ def set_github_output(key, value):
     {delimiter} 
     """
     with open("output.txt", "a") as f:
-        f.write(f"{key}=<<EOF\n")
+        f.write(f"ERRORS_OUTPUT<<EOF\n")
         if isinstance(value, list):
             for item in value:
-                f.write(f"{item}\n")
-        f.write(f"EOF")
+                f.write(f"{key}={item}\n")
+            f.write(f"EOF")
+        else:
+            f.write(f"{key}={value}\n")
 
 if __name__ == "__main__":
     # Read log file path from input arguments
