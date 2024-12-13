@@ -23,6 +23,5 @@ runs:
     - name: Capture log errors
       id: log-errors
       run: |
-        output=fromjson($ERROR_OUTPUT)
-        echo "$output" >> $GITHUB_OUTPUT
+        echo "errors=$(echo $ERROR_OUTPUT)" >> $GITHUB_OUTPUT
       shell: bash
