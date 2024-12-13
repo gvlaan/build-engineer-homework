@@ -43,11 +43,11 @@ def output_github_annotations(errors, warnings, log_file_path):
 def set_github_output(data):
     github_output = os.getenv('GITHUB_OUTPUT')
 
-    with open(github_output, "w") as f:
-        json.dump(data, f)
-
-    # with open("errors_output.txt", "w") as f:
-    #     json.dump(data, f)
+    if isinstance(data, list):
+        value = "\n".join(data)
+    
+    with open(github_output, "a") as f:
+        f.write(f"{value}\n")
 
 if __name__ == "__main__":
     # Read log file path from input arguments
