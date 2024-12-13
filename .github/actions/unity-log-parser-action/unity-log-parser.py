@@ -12,9 +12,9 @@ def parse_unity_log(log_path):
             log_content = log_file.readlines()
         
         # Matches lines containing "ERROR" or "Error" followed by the error message.
-        error_pattern = re.compile(r'(ERROR|Error|error):? (.+)')
+        error_pattern = re.compile(r'\b(ERROR|Error|error)\b:? (.+)')
         # Matches lines containing "WARNING" or "Warning" followed by the warning message.
-        warning_pattern = re.compile(r'(WARNING|Warning|warning):? (.+)')
+        warning_pattern = re.compile(r'\b(WARNING|Warning|warning)\b:? (.+)')
 
         for line_number, line in enumerate(log_content, start=1):
             if error_match := error_pattern.search(line):
