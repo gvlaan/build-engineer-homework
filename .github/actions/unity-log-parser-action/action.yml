@@ -8,7 +8,7 @@ inputs:
 outputs:
   errors:
     description: 'Errors found in the log file'
-    value: ${{ steps.log-parser.outputs.errors }}
+    # value: ${{ steps.log-parser.outputs.errors }}
 
 runs:
   using: "composite"
@@ -21,11 +21,3 @@ runs:
       shell: bash
       env:
         GITHUB_OUTPUT: $GITHUB_OUTPUT
-
-    # - name: Capture log errors
-    #   id: log-errors
-    #   run: |
-    #     echo $ERROR_OUTPUT
-    #     echo "errors=$(echo $ERROR_OUTPUT)" >> $GITHUB_OUTPUT
-    #     echo $GITHUB_OUTPUT
-    #   shell: bash

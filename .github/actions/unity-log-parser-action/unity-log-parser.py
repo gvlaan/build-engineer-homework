@@ -1,6 +1,5 @@
 import re
 import sys
-import json
 import os
 
 def parse_unity_log(log_path):
