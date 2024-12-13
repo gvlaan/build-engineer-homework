@@ -49,7 +49,7 @@ def set_github_output(key, value):
                 {value}
                 {delimiter} 
                 """
-                f.write(f"{key}<<EOF\n{item}\nEOF\n")
+                f.write(f"Errors Output<<EOF\n{key}={item}\nEOF\n")
                 # f.write(f"{key}={item}\n")
 
 if __name__ == "__main__":
