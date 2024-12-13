@@ -39,10 +39,8 @@ def output_github_annotations(errors, warnings, log_file_path):
     for warning in warnings:
         print(f"::warning file={log_file_path}::{warning}")
 
-def set_github_output(key, value):
-    github_output = os.getenv('GITHUB_OUTPUT')
-    
-    with open(github_output, "a") as f:
+def set_github_output(key, value):    
+    with open("output.txt", "a") as f:
         if isinstance(value, list):
             for item in value:
                 f.write(f"{key}={item}\n")
