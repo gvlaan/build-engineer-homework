@@ -39,18 +39,20 @@ def output_github_annotations(errors, warnings, log_file_path):
     for warning in warnings:
         print(f"::warning file={log_file_path}::{warning}")
 
-def set_github_output(key, value):    
+def set_github_output(key, value):
+    """ 
+    Multiline strings output
+    {name}<<{delimiter}
+    {value}
+    {delimiter} 
+    """
     with open("output.txt", "a") as f:
+        f.write(f"ERRORS_OUTPUT<<EOF\n")
         if isinstance(value, list):
             for item in value:
-                """ 
-                Multiline strings output
-                {name}<<{delimiter}
-                {value}
-                {delimiter} 
-                """
-                f.write(f"Errors Output<<EOF\n{key}={item}\nEOF\n")
+                f.write(f"{key}={item}\n")
                 # f.write(f"{key}={item}\n")
+        f.write(f"EOF\n")
 
 if __name__ == "__main__":
     # Read log file path from input arguments
