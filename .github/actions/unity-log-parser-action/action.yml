@@ -6,12 +6,16 @@ inputs:
     required: true
 
 outputs:
-  error-count:
-    description: 'Total number of errors found in the log file'
+  errors:
+    description: 'Errors found in the log file'
 
 runs:
   using: "composite"
   steps:
     - name: Run Unity log parser
       run: python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
+      shell: bash
+
+    - name: Capture errors output
+      run: echo "errors=$(cat errors_output.txt)" >> $GITHUB_OUTPUT
       shell: bash

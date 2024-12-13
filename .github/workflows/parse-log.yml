@@ -22,3 +22,7 @@ jobs:
         uses: ./.github/actions/unity-log-parser-action
         with:
           log-path: ${{ inputs.log-path }}
+      
+      - name: Output errors
+        run: |
+          echo "Errors: ${{ steps.parse-logs.outputs.errors }}"
