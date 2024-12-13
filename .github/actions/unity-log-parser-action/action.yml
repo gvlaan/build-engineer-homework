@@ -17,5 +17,5 @@ runs:
       id: log-parser
       run: |
         python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
-        echo "output= $(cat output.txt) >> $GITHUB_OUTPUT
+        echo "output= $(cat output.txt)" >> $GITHUB_OUTPUT
       shell: bash
