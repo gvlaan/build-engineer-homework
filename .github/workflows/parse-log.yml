@@ -25,4 +25,4 @@ jobs:
       
       - name: Output errors
         run: |
-          echo "Errors: ${{ steps.parse-logs.outputs.errors }}"
+          echo "Errors: ${{ steps.Parse-Unity-Logs.outputs.errors }}"
