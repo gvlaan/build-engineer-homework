@@ -1,6 +1,7 @@
 import re
 import sys
 import json
+import os
 
 def parse_unity_log(log_path):
     errors = []
@@ -40,7 +41,9 @@ def output_github_annotations(errors, warnings, log_file_path):
         print(f"::warning file={log_file_path}::{warning}")
 
 def set_github_output(data):
-    with open("errors_output.txt", "w") as f:
+    github_output = os.getenv('GITHUB_OUTPUT')
+
+    with open(github_output, "a") as f:
         json.dump(data, f)
 
 if __name__ == "__main__":
