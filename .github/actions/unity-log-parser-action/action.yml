@@ -8,6 +8,7 @@ inputs:
 outputs:
   errors:
     description: 'Errors found in the log file'
+    value: ${{ steps.log-errors.outputs.errors }}
 
 runs:
   using: "composite"
@@ -16,6 +17,7 @@ runs:
       run: python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
       shell: bash
 
-    - name: Capture errors output
+    - name: Capture log errors
+      id: log-errors
       run: echo "errors=$(cat errors_output.txt)" >> $GITHUB_OUTPUT
       shell: bash
