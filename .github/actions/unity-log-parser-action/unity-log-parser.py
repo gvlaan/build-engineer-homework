@@ -4,26 +4,22 @@ import sys
 def parse_unity_log(log_path):
     errors = []
     warnings = []
-    error_count = 0
-    warning_count = 0
 
     try:
         with open(log_path, 'r', encoding='utf-8') as log_file:
             log_content = log_file.readlines()
         
-        # Matches lines containing "ERROR" or "Error" followed by the error message.
+        # Matches lines containing the "ERROR", "Error" or "error" word followed by the error message.
         error_pattern = re.compile(r'\b(ERROR|Error|error)\b:? (.+)')
-        # Matches lines containing "WARNING" or "Warning" followed by the warning message.
+        # Matches lines containing the "WARNING", "Warning" or "warning" word followed by the warning message.
         warning_pattern = re.compile(r'\b(WARNING|Warning|warning)\b:? (.+)')
 
         for line_number, line in enumerate(log_content, start=1):
             if error_match := error_pattern.search(line):
-                error_count += 1
                 errors.append(f"Line {line_number}: {error_match.group(2).strip()}")
             if warning_match := warning_pattern.search(line):
-                warning_count += 1
                 warnings.append(f"Line {line_number}: {warning_match.group(2).strip()}")
-        return errors, warnings, error_count, warning_count
+        return errors, warnings
 
     except FileNotFoundError:
         print(f"Error: Log file not found at {log_path}")
@@ -32,18 +28,19 @@ def parse_unity_log(log_path):
         print(f"Error reading log file: {e}")
         sys.exit(1)
 
+# Log the errors and warnings as annotations
 def output_github_annotations(errors, warnings, log_file_path):
     for error in errors:
         print(f"::error file={log_file_path}::{error}")
     for warning in warnings:
         print(f"::warning file={log_file_path}::{warning}")
 
+# Set errors as action output
 def set_github_output(key, value):
     """ 
-    Multiline strings output
-    {name}<<{delimiter}
-    {value}
-    {delimiter} 
+    $GITHUB_OUTPUT
+    key=value structure
+    Multiline string output 
     """
     with open("output.txt", "a") as f:
         if isinstance(value, list):
@@ -63,8 +60,8 @@ if __name__ == "__main__":
     # Parse the Unity log file
     errors, warnings, error_count, warning_count = parse_unity_log(log_file_path)
 
-    # Output GitHub Annotations
+    # Output annotations
     output_github_annotations(errors, warnings, log_file_path)
 
-    # Set GitHub Action Outputs
+    # Set action outputs
     set_github_output("Error", errors)
