@@ -4,24 +4,20 @@ inputs:
   log-path:
     description: 'Path to the Unity Editor log file'
     required: true
+
 outputs:
   errors:
     description: 'Errors found in the log file'
     value: ${{ steps.log-parser.outputs.errors }}
+
 runs:
   using: "composite"
   steps:
-    - name: Set GitHub Path
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
-      shell: bash
-      env:
-        GITHUB_ACTION_PATH: ${{ github.action_path }}
-
     - name: Run Unity log parser
       id: log-parser
       run: |
-        python unity-log-parser.py '${{ inputs.log-path }}'
+        python .github/actions/unity-log-parser-action/unity-log-parser.py '${{ inputs.log-path }}'
         echo "ERRORS<<EOF" >> "$GITHUB_OUTPUT"
-        echo "errors=$(cat output.txt)" >> "$GITHUB_OUTPUT"
+        echo -e "errors=$(cat output.txt)" >> "$GITHUB_OUTPUT"
         echo "EOF" >> "$GITHUB_OUTPUT"
       shell: bash
