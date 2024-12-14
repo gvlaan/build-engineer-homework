@@ -58,7 +58,7 @@ if __name__ == "__main__":
     log_file_path = sys.argv[1]
 
     # Parse the Unity log file
-    errors, warnings, error_count, warning_count = parse_unity_log(log_file_path)
+    errors, warnings = parse_unity_log(log_file_path)
 
     # Output annotations
     output_github_annotations(errors, warnings, log_file_path)
